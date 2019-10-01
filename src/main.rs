@@ -1,3 +1,19 @@
+/*
+* Function to encrypt a plaintext string using a Caesar cipher-like method.
+*
+* Parameters:
+*   - plaintext: A reference to a string slice (&str) containing the original text to be encrypted.
+*   - key: A 16-bit unsigned integer (u16) that specifies the number of positions each letter will be shifted.
+*
+* Returns:
+*   - A `String` containing the encrypted text, where each letter is shifted by the specified key value.
+*     If the shift goes beyond the end of the alphabet, it wraps around to the beginning.
+*
+* Notes:
+*   - Non-alphabetic characters are not shifted; they are kept as is.
+*   - If the shift results in an invalid character (outside of ASCII), it reverts to the original character.
+*/
+
 fn encrypt(plaintext: &str, key: u16) -> String {
     let mut encryptpt = String::new();
     for c in plaintext.chars() {
@@ -19,6 +35,21 @@ fn encrypt(plaintext: &str, key: u16) -> String {
     }
     encryptpt
 }
+/*
+* Function to decrypt an encrypted string using a Caesar cipher-like method.
+*
+* Parameters:
+*   - encrypted: A reference to a string slice (&str) containing the text to be decrypted.
+*   - key: A 16-bit unsigned integer (u16) that specifies the number of positions each letter will be shifted backward to restore the original text.
+*
+* Returns:
+*   - A `String` containing the decrypted text, where each letter is shifted back by the specified key value.
+*     If the shift goes below the beginning of the alphabet, it wraps around to the end.
+*
+* Notes:
+*   - Non-alphabetic characters are not shifted; they remain unchanged.
+*   - If the backward shift results in an invalid character, it reverts to the original character to ensure data integrity.
+*/
 
 fn decrypt(encrypted: &str, key: u16) -> String {
     let mut decryptpt = String::new();
